@@ -777,6 +777,17 @@ textarea {
   width: 120px;
 }
 
+#selectJuego {
+  width: 77%;
+  height: 50px;
+  font-family: "Inter", sans-serif;
+  color:#6a6a6a
+}
+
+#inputNombre, #inputCorreo {
+  width: 320px;
+}
+
 #bit-gif {
   border-radius: 30px;
   height: 300px;

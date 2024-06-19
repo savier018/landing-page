@@ -22,6 +22,7 @@ let loaded = ( eventLoaded ) => {
             return;
         }
     })
+    obtenerDatos();
 }
 
 window.addEventListener("DOMContentLoaded", loaded);
@@ -33,10 +34,12 @@ formulario.addEventListener('submit',(event)=>{
 
     const nombre = document.getElementById('inputNombre').value; 
     const email = document.getElementById('inputCorreo').value; 
+    const seleccionarJuego = document.getElementById('selectJuego').value;
 
     const datos = { 
         nombre: nombre, 
-        email: email, 
+        email: email,
+        seleccionarJuego: seleccionarJuego 
     }; 
 
     fetch('https://dawm-landingpage-default-rtdb.firebaseio.com/collection.json', { 
@@ -49,5 +52,39 @@ formulario.addEventListener('submit',(event)=>{
     .then(respuesta => respuesta.json()) 
     .then(datos => { 
         console.log(datos); 
+        obtenerDatos();
     }) .catch(error => console.error(error));
+    obtenerDatos();
 });
+
+async function obtenerDatos() {
+    const url = 'https://dawm-landingpage-default-rtdb.firebaseio.com/collection.json';
+    const respuesta = await fetch(url);
+    if (!respuesta.ok) {
+        console.error("Error:", respuesta.status);
+        return;
+    }
+
+    const datos = await respuesta.json();
+    const map = new Map;
+    for (let data in datos) {
+        const MapB= datos[data]
+        console.log(MapB.seleccionarJuego);
+        const Topic= MapB.seleccionarJuego
+        if(map.has(Topic)){
+            map.get(Topic).push(MapB.nombre);
+        } else {
+            map.set(Topic,[MapB.nombre])
+        }
+    }
+    const newMap = Array.from(map.entries()).sort((a, b) => b[1].length - a[1].length); 
+    const sortedMap = new Map(newMap);
+    
+    const Tabla = document.getElementById("tablebody");
+    Tabla.innerHTML = "";
+    sortedMap .forEach((nombre, Topic)=>{
+    const fila = Tabla.insertRow();
+    fila.insertCell().textContent = Topic;
+    fila.insertCell().textContent = nombre.length;
+    })
+}

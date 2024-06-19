@@ -448,7 +448,7 @@
 				<div class="row">
 					<div class="col-lg-8">
 						<div class="subscription-form">
-							<h3 class="d-flex align-items-center"><span class="me-1"><img src="images/envelope-outline.svg" alt="Image" class="img-fluid"></span><span>Suscríbete para recibir ofertas exclusivas</span></h3>
+							<h3 class="d-flex align-items-center"><span class="me-1"><img src="images/envelope-outline.svg" alt="Image" class="img-fluid"></span><span>¡Participa y elige el próximo juego de eSports para ganar recompensas</span></h3>
 
 							<form action="#" class="row g-3" id="formulario-pagina">
 								<div class="col-auto">
@@ -457,13 +457,39 @@
 								<div class="col-auto">
 									<input type="email" class="form-control" placeholder="Ingresa tu correo" id="inputCorreo">
 								</div>
+								<div>
+									<select class="form-control" id="selectJuego">
+										<option value="" disabled selected>Elige un videojuego</option>
+										<option value="League of Legends">League of Legends</option>
+										<option value="Dota 2">Dota 2</option>
+										<option value="CS GO">Counter-Strike: Global Offensive</option>
+										<option value="Fortnite">Fortnite</option>
+										<option value="Valorant">Valorant</option>
+									</select>
+								</div>
 								<div class="col-auto">
 									<button class="btn btn-primary">
 										<span class="fa fa-paper-plane"></span>
 									</button>
 								</div>
 							</form>
+						</div>
+					</div>
+				</div>
 
+				<div id="resultados" class="blog-section">
+					<div class="container">
+						<div class="row">
+							<div class="p-3 p-lg-5 border bg-white">
+								<table class="table site-block-order-table mb-5">
+									<thead>
+										<th> Videojuego </th>
+										<th> Conteo </th>
+									</thead>
+									<tbody id="tablebody">
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
